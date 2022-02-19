@@ -1,0 +1,58 @@
+﻿@page "/"
+@inject HttpClient Http
+@inject IJSRuntime JS
+
+<PageTitle>Интернет радио</PageTitle>
+
+<h1>Интернет радио</h1>
+
+<div class="d-flex flex-column gap-3">
+    @if (radioStations == null)
+    {
+        <p><em>Загрузка списка радиостанций...</em></p>
+    }
+    else
+    {
+        @foreach (var station in radioStations)
+        {
+            <div class="d-flex flex-row align-items-center gap-5" @onclick="@(e => Play(station))">
+                <img src="@station.IconUrl" height="72" />
+                <div class="btn btn-@(station.IsActive ? "success" : "outline-success") flex-grow-1">@station.Title</div>
+            </div>
+        }
+    }
+</div>
+
+
+
+@code {
+
+    private RadioStation[]? radioStations;
+    private string? src;
+
+    protected override async Task OnInitializedAsync()
+    {
+        radioStations = await Http.GetFromJsonAsync<RadioStation[]>("data/radio-stations.json");
+    }
+
+    public void Play(RadioStation st)
+    {
+        if (radioStations is not null)
+            foreach (var oldSt in radioStations)
+            {
+                oldSt.IsActive = false;
+            }
+        st.IsActive = true;
+        src = st.Url;
+        JS.InvokeVoidAsync("play", st.Url);
+    }
+
+    public class RadioStation
+    {
+        public string? Title { get; set; }
+        public string? Url { get; set; }
+        public string? Icon { get; set; }
+        public bool IsActive { get; set; } = false;
+        public string IconUrl => $"/icons/{Icon}.jpg";
+    }
+}

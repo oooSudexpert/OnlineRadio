@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Интернет радио</title>
+    <base href="/" />
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <link href="OnlineRadio.styles.css" rel="stylesheet" />
+    <link href="manifest.json" rel="manifest" />
+    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
+</head>
+
+<body>
+    <div class="container py-4">
+        <div id="app">Загрузка...</div>
+        <audio id="audio"></audio>
+        <div id="blazor-error-ui">
+            Произошла непредвиденная ошибка.
+            <a href="" class="reload">Перезагрузить</a>
+            <a class="dismiss">🗙</a>
+        </div>
+    </div>
+
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script>navigator.serviceWorker.register('service-worker.js');</script>
+    <script>
+        const player = document.getElementById("audio");
+        window.play = (src) => {
+            if (player.paused || player.src !== src) {
+                playAudio(src);
+            } else {
+                player.pause();
+            }
+        };
+        async function playAudio(src) {
+            try {
+                player.src = src;
+                console.log(src);
+                await player.play();
+            } catch (err) {
+                console.log("error");
+            }
+        }
+    </script>
+</body>
+
+</html>

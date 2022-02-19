@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "defaultProvider": "jsdelivr",
+  "libraries": [
+    {
+      "library": "howler@2.2.3",
+      "destination": "wwwroot/lib/howler/"
+    }
+  ]
+}

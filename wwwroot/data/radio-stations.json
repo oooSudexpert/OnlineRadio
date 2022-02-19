@@ -1,0 +1,32 @@
+﻿[
+  {
+    "Title": "Бизнес ФМ",
+    "Url": "https://bfm.hostingradio.ru:9075/fm",
+    "Icon": "bussines"
+  },
+  {
+    "Title": "Губерния",
+    "Url": "https://str3.pcradio.ru/guberniafm_ru-med",
+    "Icon": "samara"
+  },
+  {
+    "Title": "Радио Книга",
+    "Url": "https://bookradio.hostingradio.ru:8069/fm",
+    "Icon": "book"
+  },
+  {
+    "Title": "Книга вслух",
+    "Url": "http://soyuztop.ru:4000/radio",
+    "Icon": "kniga-vsluh"
+  },
+  {
+    "Title": "Вести ФМ",
+    "Url": "https://icecast-vgtrk.cdnvideo.ru/vestifm_mp3_128kbps",
+    "Icon": "vesti"
+  },
+  {
+    "Title": "Маяк",
+    "Url": "https://icecast-vgtrk.cdnvideo.ru/mayakfm_mp3_128kbps",
+    "Icon": "mayak"
+  }
+]
